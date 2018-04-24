@@ -41,7 +41,7 @@ export default class CalendarContainer extends Component {
                     'work_week': false
                 }}
                 toolbar={false}
-            />
+            />;
             if (this.state.isParking) {
                 parkingMessage =
                     <h2 style={{textAlign: "center", margin: "20px 0 20px 0"}}>YES! There is Event Parking Today!</h2>
@@ -51,7 +51,7 @@ export default class CalendarContainer extends Component {
                     <h2 style={{textAlign: "center", margin: "20px 0 20px 0"}}>There is no Event Parking today.</h2>
             }
         } else {
-            parkingMessage = <h2 style={{textAlign: "center", margin: "20px 0 20px 0"}}>Loading...</h2>
+            parkingMessage = <h2 style={{textAlign: "center", margin: "20px 0 20px 0"}}>Loading...</h2>;
             calendar = <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "300px"}}>
                 <Spinner name="ball-spin-fade-loader"/>
             </div>
@@ -66,8 +66,6 @@ export default class CalendarContainer extends Component {
 
     static formatRows(rows) {
         _.each(rows, (row) => {
-            // console.log(row.start_date);
-            // console.log(row.end_date);
             row['start'] = row.start_date;
             row['end'] = row.end_date;
 
