@@ -3,8 +3,9 @@ import CalendarContainer from '../../containers/CalendarContainer';
 import MapContainer from '../../containers/MapContainer';
 
 
+
 export default class Body extends Component {
-    mainScrollStyle = {textAlign: 'center'};
+    mainScrollStyle = {textAlign: 'center', cursor: 'pointer'};
     mainContentStyle = {flexGrow: '1', position: 'relative', overflow: 'hidden', display: 'flex'};
     mainWrapperStyle = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
 
@@ -15,6 +16,7 @@ export default class Body extends Component {
             containerCount: 2,
             isCalendarContainerHidden: false,
             isMapContainerHidden: true,
+            selectedDate: null,
         };
     }
 
@@ -47,14 +49,18 @@ export default class Body extends Component {
         }
     }
 
+    selectedDateChanged(m) {
+        this.setState({selectedDate: m});
+    }
+
     render() {
         return (
             <div style={this.mainWrapperStyle}>
                 <div style={this.mainScrollStyle} onClick={this.upClicked.bind(this)} id={'mainScrollUp'}>Scroll up to see previous content
                 </div>
                 <div style={this.mainContentStyle}>
-                    {!this.state.isCalendarContainerHidden && <CalendarContainer/>}
-                    {!this.state.isMapContainerHidden && <MapContainer/>}
+                    {!this.state.isCalendarContainerHidden && <CalendarContainer onSelectedDateChanged={this.selectedDateChanged.bind(this)}/>}
+                    {!this.state.isMapContainerHidden && <MapContainer selectedDate={this.state.selectedDate}/>}
                 </div>
                 <div style={this.mainScrollStyle} onClick={this.downClicked.bind(this)} id={'mainScrollDown'}>Scroll down to see next
                                                                                          content

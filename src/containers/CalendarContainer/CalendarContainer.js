@@ -27,6 +27,8 @@ export default class CalendarContainer extends Component {
     }
 
     componentDidMount() {
+        this.props.onSelectedDateChanged(moment());
+
         this.getEvents(moment().month());
         this.getEvents();
 
@@ -50,7 +52,6 @@ export default class CalendarContainer extends Component {
             const eventsURL = "https://event-parking-api.herokuapp.com/event/" + year + "/" + month;
             axios.get(eventsURL).then((res) => {
                 this.setState({events: [...this.state.events, ...CalendarContainer.formatRows(res.data.rows)]});
-                // this.setParkingState(res.data.rows);
                 this.setState({isLoaded: true});
             });
             this.monthsRetrieved.push({month: month, year: year});
@@ -60,6 +61,7 @@ export default class CalendarContainer extends Component {
     newDateSelected(a) {
         const m = moment(a);
         this.getEvents(m.month() + 2, m.year());
+        this.props.onSelectedDateChanged(m);
     }
 
     render() {
@@ -73,6 +75,7 @@ export default class CalendarContainer extends Component {
                 onNavigate={this.newDateSelected.bind(this)}
                 onSelectEvent={this.eventSelected.bind(this)}
                 formats={this.formats}
+
             />;
             if (this.state.isParking) {
                 parkingMessage =
