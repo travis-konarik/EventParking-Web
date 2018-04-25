@@ -5,7 +5,7 @@ import MapContainer from '../../containers/MapContainer';
 
 export default class Body extends Component {
     mainScrollStyle = {textAlign: 'center'};
-    mainContentStyle = {flexGrow: '1', position: 'relative', overflow: 'hidden'};
+    mainContentStyle = {flexGrow: '1', position: 'relative', overflow: 'hidden', display: 'flex'};
     mainWrapperStyle = {display: 'flex', flexDirection: 'column', flexGrow: '1'};
 
     constructor() {
