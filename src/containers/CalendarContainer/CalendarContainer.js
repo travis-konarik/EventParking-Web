@@ -71,6 +71,7 @@ export default class CalendarContainer extends Component {
                 defaultView='month'
                 views={['month', 'week', 'day']}
                 onNavigate={this.newDateSelected.bind(this)}
+                onSelectEvent={this.eventSelected.bind(this)}
                 formats={this.formats}
             />;
             if (this.state.isParking) {
@@ -106,8 +107,14 @@ export default class CalendarContainer extends Component {
         return rows;
     }
 
+    eventSelected(event) {
+        let win = window.open(event.url, '_blank');
+        win.focus();
+        console.log(event);
+    }
+
     stateWillUpdate(nextProps, nextState) {
-        if(nextState.events !== this.state.events) {
+        if (nextState.events !== this.state.events) {
             this.setParkingState(nextState.events);
         }
     }
