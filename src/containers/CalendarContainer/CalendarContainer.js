@@ -113,7 +113,6 @@ export default class CalendarContainer extends Component {
     eventSelected(event) {
         let win = window.open(event.url, '_blank');
         win.focus();
-        console.log(event);
     }
 
     stateWillUpdate(nextProps, nextState) {
