@@ -6,7 +6,10 @@ import {Circle} from "./Circle";
 
 // FOR MY DEMO I HAVE MY PERSONAL GOOGLE API KEY PLUGGED IN HERE
 // TO MAKE THIS WORK ELSEWHERE YOU WILL NEED TO USE YOUR OWN.
-import config from './config';
+// In Heroku I use environment/config vars
+// import config from './config';
+// const apiKey = config.apiKey;
+const apiKey = process.env.googleMapsApiKey;
 
 export class MapContainer extends Component {
     parkingPlaces = [
@@ -132,5 +135,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: (config.apiKey),
+    apiKey: (apiKey),
 })(MapContainer)
